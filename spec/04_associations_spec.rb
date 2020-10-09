@@ -25,10 +25,12 @@ describe "Associations" do
 
     describe "#dogs" do
       it "returnsa a collection of all the dogs that belong to the owner" do
+        expect(@owner.dogs.count).to eq(0)
+
         dog_1 = Dog.new("Fido", @owner)
         dog_2 = Dog.new("Snuffles", @owner)
         dog_3 = Dog.new("Charley", @owner)
-
+        #binding.pry
         expect(@owner.dogs[0]).to eq(dog_1)
         expect(@owner.dogs[1]).to eq(dog_2)
         expect(@owner.dogs[2]).to eq(dog_3)

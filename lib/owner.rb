@@ -1,6 +1,6 @@
 require 'pry'
-require_relative './dog.rb'
-require_relative './cat.rb'
+# require_relative './dog.rb'
+# require_relative './cat.rb'
 
 
 class Owner
@@ -17,6 +17,7 @@ class Owner
   def say_species
     return "I am a human."
   end
+
 
   def self.all
     return @@all
@@ -43,16 +44,19 @@ class Owner
   def dogs
     #binding.pry
     Dog.all.select do |dog|
-      dog.owner.name == self.name 
+      dog.owner.name == self.name
 
-      dog.all.find do |dog|
-        dog.name == self.dog.name
-      end
       #binding.pry
     end
+
     
   end
 
+ def buy_cat
+      #@@all_cats << Cat.new
+      all_cats.count -= 1
+    end  
+      
  
 end
 
