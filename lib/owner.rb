@@ -1,4 +1,7 @@
 require 'pry'
+require_relative './dog.rb'
+require_relative './cat.rb'
+
 
 class Owner
 
@@ -27,8 +30,30 @@ class Owner
     # return @@all.clear()
     return @@all = []
   end
-    
 
+  def cats 
+    # return self.all_cats
+    Cat.all.select do |kitty|
+      kitty.owner.name == self.name
+      #binding.pry
+    end
+  end
+  #binding.pry
+  
+  def dogs
+    #binding.pry
+    Dog.all.select do |dog|
+      dog.owner.name == self.name 
+
+      dog.all.find do |dog|
+        dog.name == self.dog.name
+      end
+      #binding.pry
+    end
+    
+  end
+
+ 
 end
 
 puts "hello"
