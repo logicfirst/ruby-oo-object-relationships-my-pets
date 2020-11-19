@@ -9,7 +9,6 @@ describe Dog do
 
   after do
     Owner.all.clear
-    Dog.all.clear
   end
 
   context 'Instance methods' do

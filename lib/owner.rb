@@ -1,63 +1,78 @@
 require 'pry'
-# require_relative './dog.rb'
-# require_relative './cat.rb'
-
-
 class Owner
+  
+  attr_reader :name, :species
 
   @@all = []
-  attr_reader :name, :species, :say_species
+  @@cats = []
 
   def initialize(name)
-    @name = name
     @species = "human"
-    @@all << self
+    @name = name
+    self.class.all << self
   end
-
-  def say_species
-    return "I am a human."
-  end
-
 
   def self.all
-    return @@all
+    @@all
   end
 
   def self.count
-    return @@all.count
+    self.all.count
   end
 
   def self.reset_all
-    # return @@all.clear()
-    return @@all = []
+    @@all = []
   end
 
-  def cats 
-    # return self.all_cats
-    Cat.all.select do |kitty|
-      kitty.owner.name == self.name
-      #binding.pry
+  def say_species
+    "I am a human."
+  end
+
+  def cats
+    Cat.all.select do |cat|
+      cat.owner == self
     end
   end
-  #binding.pry
-  
+
   def dogs
-    #binding.pry
     Dog.all.select do |dog|
-      dog.owner.name == self.name
-
-      #binding.pry
+      dog.owner == self
     end
-
-    
   end
 
- def buy_cat
-      #@@all_cats << Cat.new
-      all_cats.count -= 1
-    end  
-      
- 
-end
+  def buy_cat(name)
+    Cat.new(name, self)
+  end
 
-puts "hello"
+  def buy_dog(name)
+    Dog.new(name, self)
+  end
+
+  def walk_dogs
+    dogs.each do |dog|
+    dog.mood = "happy"
+    end
+  end
+
+  def feed_cats
+    cats.each do |cat|
+    cat.mood = "happy"
+    end
+  end
+
+  def sell_pets
+    dogs.each do |dog|
+      dog.owner = nil
+      dog.mood = "nervous"
+    end
+    cats.each do |cat|
+      cat.owner = nil
+      cat.mood = "nervous"
+    end
+  end
+
+  def list_pets
+    "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
+  end
+
+end

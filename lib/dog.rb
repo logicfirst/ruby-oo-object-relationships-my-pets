@@ -1,24 +1,18 @@
-# require_relative './owner.rb'
-
-
 class Dog
-  # code goes here
-  attr_reader :name
+  
   attr_accessor :owner, :mood
+  attr_reader :name
 
-@@all_dogs = []
-  def initialize(name, owner)
+  @@all = []
+
+  def initialize(name, owner = "Scott")
     @name = name
     @owner = owner
-    @mood = 'nervous'
-    @@all_dogs << self
-    #binding.pry
+    @mood = "nervous"
+    self.class.all << self
   end
 
-  def self.all 
-    return @@all_dogs
-    #binding.pry
+  def self.all
+    @@all
   end
-  #binding.pry
-
 end
